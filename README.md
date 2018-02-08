@@ -67,6 +67,9 @@ import Animation from './lib/Sprite/Animation.js';
         player.draw()
     })
 ```
+#### Animated Sprite
+![Sprite Animation](https://media.giphy.com/media/xUOwGn9e4T7zhpCvoQ/giphy.gif)
+
 ### Add behaviors
 ``` javascript
     OnStart(()=>{
@@ -76,5 +79,7 @@ import Animation from './lib/Sprite/Animation.js';
         player.addBehavior(new Spinner(40))
     })
 ```
+#### Animated Sprite with Spinner Behavior
+![Spinner Behavior](https://media.giphy.com/media/xThta0SaXkP7uDU57a/giphy.gif)
 
 
