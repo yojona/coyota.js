@@ -44,7 +44,7 @@ AssetManager.load(resources).then(()=>{
 })
 
 ```
-### Create animations
+### Create Sprite Animations
 You need to import the **Sprite** and **Animation** classes from *lib/Sprite/*
 ``` javascript
 import Sprite from './lib/Sprite/Sprite.js' 
