@@ -25,21 +25,26 @@ AssetManager.load(resources).then(()=>{
     let player
     let ground
 
+
     OnStart(()=>{
         
         player  = new Sprite(AssetManager.Textures.playerTexture, 30, 30, 16, 16, 8, 8)
-        ground  = new Polygon(0, 216, [[0, 0], [320, 0], [320, 40], [0, 40]])
+        ground  = new Sprite(AssetManager.Textures.groundTexture, 0, 220, 320, 32)
 
-        player.addAnimation({
-            "Run" : new Animation(AssetManager.Textures.playerTexture, 1, 3, 10)
-        })
-
-        player.addBehavior(new Spinner(10))
+        player.addBehavior(new Bullet(200, 50, true))
+        player.addBehavior(new Spinner(200))
+        ground.addBehavior(new Solid())
     })
 
     Always(()=>{
 
+        player.setSize(64, 64)
+
         player.draw()
+        player.behaviors.Bullet.setEnabled(false)
+        player.drawCollision()
+        
+        ground.draw()
     })
 })
 

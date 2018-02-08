@@ -1,10 +1,11 @@
 export default class Solid{
     constructor(){
-        this.inst       = null
-        this.enabled    = true
+        this.inst                   = null
+        this.enabled                = true
     }
 
     setEnabled(bool){
-        this.enabled    = bool
+        this.enabled                = bool
+        this.inst.collider.solid    = bool
     }
 }

@@ -9,6 +9,6 @@ export default class Spinner{
     }
 
     always(){
-        this.inst.setAngle(this.inst.angle + this.speed)
+        this.inst.setAngle(this.inst.angle + (this.speed)*dt)
     }
 }
