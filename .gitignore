@@ -1,2 +1,5 @@
-# General
+# Directories
+editor/
+
+# Files
 .DS_Store
