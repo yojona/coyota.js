@@ -82,4 +82,36 @@ import Animation from './lib/Sprite/Animation.js';
 #### Animated Sprite with Spinner Behavior
 ![Spinner Behavior](https://media.giphy.com/media/xThta0SaXkP7uDU57a/giphy.gif)
 
+## Solid objects and collisions
+This project uses [Collisions library](https://github.com/Sinova/Collisions) 
+``` javascript
 
+import Sprite from '../../lib/Sprite/Sprite.js' 
+import Bullet from '../../behaviors/Bullet/Bullet.js'
+import Solid from '../../behaviors/Solid/Solid.js'
+
+let ball
+let player
+let cpu
+
+    OnStart(()=>{
+        screen.create(320, 240)    
+
+        ball    = new Sprite('./assets/ball.png', 160, 120, 8, 8, 4, 4)
+        player  = new Sprite('./assets/paddle.png', 36, 120, 8, 40, 4, 20)
+        cpu     = new Sprite('./assets/paddle.png', 280, 120, 8, 40, 4, 20)
+
+        // new Bullet(speed, angleOfMotion, bounceOffSolids)
+        ball.addBehavior(new Bullet(200, 0, true))
+        cpu.addBehavior(new Solid())
+        player.addBehavior(new Solid())
+
+    })
+
+    Always(()=>{
+        cpu.draw()
+        ball.draw()
+        player.draw()
+    })
+```
+![Pong](https://media.giphy.com/media/3ohs4AvRNtGzlwSEko/giphy.gif)
