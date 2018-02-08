@@ -6,7 +6,7 @@ A very very simple game engine written in Javascript.
 > - This project uses [Collisions library](https://github.com/Sinova/Collisions)
 >
 ## How to use it
-Coyota.js provide you two main functions, **OnStart** and **Always**. 
+Coyota.js provide two main functions, **OnStart** and **Always**. 
 **OnStart** function will be executed the first time the game is run, **Always** is the game loop. 
 
 ```javascript
@@ -20,7 +20,9 @@ Coyota.js provide you two main functions, **OnStart** and **Always**.
 ```
 
 ### Preload resources
-You can use the **Setup** function to set up your game while your assets are loading. **AssetManager** is a global object.
+It is highly recommended to preload your assets before using them. You can use the promise AssetManager.load () for that. 
+
+Use the **Setup** function to set up your game while your assets are loading. **AssetManager** is a global object.
 ``` javascript
 let resources = {
     playerTexture: './assets/mauricio.png',
@@ -76,6 +78,8 @@ import Animation from './lib/Sprite/Animation.js';
         screen.create(320, 240)   
         
         player = new Sprite('./assets/mauricio.png', 160, 120, 24, 43, 12, 20)
+
+        // new Spinner(rotationSpeed)
         player.addBehavior(new Spinner(40))
     })
 ```
@@ -86,9 +90,9 @@ import Animation from './lib/Sprite/Animation.js';
 This project uses [Collisions library](https://github.com/Sinova/Collisions) 
 ``` javascript
 
-import Sprite from '../../lib/Sprite/Sprite.js' 
-import Bullet from '../../behaviors/Bullet/Bullet.js'
-import Solid from '../../behaviors/Solid/Solid.js'
+import Sprite from './lib/Sprite/Sprite.js' 
+import Bullet from './behaviors/Bullet/Bullet.js'
+import Solid from './behaviors/Solid/Solid.js'
 
 let ball
 let player
@@ -111,7 +115,7 @@ let cpu
     Always(()=>{
         cpu.draw()
         ball.draw()
-        player.draw()
+        player.draw()º
     })
 ```
 ![Pong](https://media.giphy.com/media/3ohs4AvRNtGzlwSEko/giphy.gif)
