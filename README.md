@@ -115,7 +115,7 @@ let cpu
     Always(()=>{
         cpu.draw()
         ball.draw()
-        player.draw()º
+        player.draw()
     })
 ```
 ![Pong](https://media.giphy.com/media/3ohs4AvRNtGzlwSEko/giphy.gif)
