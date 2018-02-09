@@ -80,7 +80,7 @@ player.addBehavior(new Spinner(40))
 ## Solid objects and collisions
 > This project uses [Collisions library](https://github.com/Sinova/Collisions) 
 
-All CoyotaObjects has a collider property. When an Sprite is created, collider initialize with an Polygon object of Collisions Library with the same size and position of the Sprite.
+All CoyotaObjects has a collider property. When an Sprite is created, collider initialize with a Polygon object from Collisions Library with the same size and position of the Sprite.
 
 ``` javascript
 
