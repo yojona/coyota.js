@@ -49,40 +49,34 @@ AssetManager.load(resources).then(()=>{
 ### Create Sprite Animations
 You need to import the **Sprite** and **Animation** classes from *lib/Sprite/*
 ``` javascript
-import Sprite from './lib/Sprite/Sprite.js' 
-import Animation from './lib/Sprite/Animation.js';
-
-    OnStart(()=>{
-        screen.create(320, 240)   
+OnStart(()=>{
+  player = new Sprite('./assets/mauricio.png', 160, 120, 24, 43, 12, 20)
         
-        // new Sprite(source, x, y, frameWidth or width, frameHeight or height, hotSpotX, hotSpotY)
-        player = new Sprite('./assets/mauricio.png', 160, 120, 24, 43, 12, 20)
-        
-        player.addAnimation({
-            // new Animation(source, initialFrame, lastFrame, speed)
-            "Walk": new Animation(player.texture, 1, 3, 10)
-        })
-    })
+  player.addAnimation({
+   // new Animation(source, initialFrame, lastFrame, speed)
+        "Walk": new Animation(player.texture, 1, 3, 10)
+  })
 
-    Always(()=>{
-        player.setAnimation("Walk").play()
-        player.draw()
-    })
+Always(()=>{
+  player.setAnimation("Walk").play()
+  player.draw()
+ })
 ```
 #### Animated Sprite
 ![Sprite Animation](https://media.giphy.com/media/xUOwGn9e4T7zhpCvoQ/giphy.gif)
 
 ### Add behaviors
 ``` javascript
-        player.addBehavior(new Spinner(40))
+player.addBehavior(new Spinner(40))
 ```
+
+#### Animated Sprite with Spinner Behavior
+![Spinner Behavior](https://media.giphy.com/media/xThta0SaXkP7uDU57a/giphy.gif)
+
 #### List of behaviors:
 - Bullet
 - Spinner
 - Solid
-
-#### Animated Sprite with Spinner Behavior
-![Spinner Behavior](https://media.giphy.com/media/xThta0SaXkP7uDU57a/giphy.gif)
 
 ## Solid objects and collisions
 This project uses [Collisions library](https://github.com/Sinova/Collisions) 
