@@ -115,8 +115,8 @@ let cpu
 
 #### Simple pong
 ``` javascript
-        ball.addBehavior(new Bullet(200, 0, true))
-        cpu.addBehavior(new Solid())
-        player.addBehavior(new Solid())
+  ball.addBehavior(new Bullet(200, 0, true))
+  cpu.addBehavior(new Solid())
+  player.addBehavior(new Solid())
 ```
 ![Pong](https://media.giphy.com/media/3ohs4AvRNtGzlwSEko/giphy.gif)
