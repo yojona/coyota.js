@@ -53,8 +53,7 @@ OnStart(()=>{
   player = new Sprite('./assets/mauricio.png', 160, 120, 24, 43, 12, 20)
         
   player.addAnimation({
-   // new Animation(source, initialFrame, lastFrame, speed)
-        "Walk": new Animation(player.texture, 1, 3, 10)
+   "Walk": new Animation(player.texture, 1, 3, 10) //source, initialFrame, lastFrame, speed)
   })
 
 Always(()=>{
