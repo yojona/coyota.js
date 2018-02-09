@@ -4,10 +4,10 @@
  * Version: 1.0.0
  * Author: Jonathan Ayala
  * Created: 01/19/2018
- * Last updated: 02/08/2018
+ * Last updated: 02/09/2018
  */
 
-import Sprite from '../../lib/Sprite/Sprite.js' 
+import Sprite from '../../objects/Sprite/Sprite.js' 
 import Bullet from '../../behaviors/Bullet/Bullet.js'
 import Solid from '../../behaviors/Solid/Solid.js'
 

@@ -1,5 +1,5 @@
-import CoyotaObject from '../CoyotaObject/CoyotaObject.js';
-import {Polygon} from '../Collisions/Collisions.js'
+import CoyotaObject from '../../lib/CoyotaObject/CoyotaObject.js';
+import {Polygon} from '../../lib/Collisions/Collisions.js'
 
 export default class TiledBackground extends CoyotaObject{
     constructor(source, x, y, width, height){

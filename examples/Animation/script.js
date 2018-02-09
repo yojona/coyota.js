@@ -4,12 +4,12 @@
  * Version: 1.0.0
  * Author: Jonathan Ayala
  * Created: 01/19/2018
- * Last updated: 02/08/2018
+ * Last updated: 02/09/2018
  */
 
-import Sprite from './../../lib/Sprite/Sprite.js' 
+import Sprite from './../../objects/Sprite/Sprite.js' 
+import Animation from '../../objects/Sprite/Animation.js';
 import Spinner from './../../behaviors/Spinner/Spinner.js'
-import Animation from '../../lib/Sprite/Animation.js';
 
 let resources = {
     playerTexture: './assets/mauricio.png',

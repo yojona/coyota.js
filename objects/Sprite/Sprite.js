@@ -1,5 +1,5 @@
-import CoyotaObject from '../CoyotaObject/CoyotaObject.js';
-import {Polygon, Circle} from '../Collisions/Collisions.js'
+import CoyotaObject from '../../lib/CoyotaObject/CoyotaObject.js';
+import {Polygon, Circle} from '../../lib/Collisions/Collisions.js'
 import Animation from './Animation.js';
 
 
