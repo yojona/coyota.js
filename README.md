@@ -74,15 +74,13 @@ import Animation from './lib/Sprite/Animation.js';
 
 ### Add behaviors
 ``` javascript
-    OnStart(()=>{
-        screen.create(320, 240)   
-        
-        player = new Sprite('./assets/mauricio.png', 160, 120, 24, 43, 12, 20)
-
-        // new Spinner(rotationSpeed)
         player.addBehavior(new Spinner(40))
-    })
 ```
+#### List of behaviors:
+- Bullet
+- Spinner
+- Solid
+
 #### Animated Sprite with Spinner Behavior
 ![Spinner Behavior](https://media.giphy.com/media/xThta0SaXkP7uDU57a/giphy.gif)
 
@@ -117,5 +115,12 @@ let cpu
         ball.draw()
         player.draw()
     })
+```
+
+#### Simple pong
+``` javascript
+        ball.addBehavior(new Bullet(200, 0, true))
+        cpu.addBehavior(new Solid())
+        player.addBehavior(new Solid())
 ```
 ![Pong](https://media.giphy.com/media/3ohs4AvRNtGzlwSEko/giphy.gif)
