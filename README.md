@@ -76,6 +76,7 @@ player.addBehavior(new Spinner(40))
 - Bullet
 - Spinner
 - Solid
+- Platformer (work in progress)
 
 ## Solid objects and collisions
 > This project uses [Collisions library](https://github.com/Sinova/Collisions) 
