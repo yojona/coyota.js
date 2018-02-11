@@ -2,17 +2,20 @@ export default class Platformer{
     constructor(){
         this.inst           = null
         this.maxSpeed       = 3
-        this.jumpStrength   = 6
+        this.jumpStrength   = 5
         this.velX           = 0
         this.velY           = 0
         this.friction       = 0.8
         this.gravity        = 0.3
 
         this.isJumping      = false
+        this.isMoving       = false
+
     }
 
     moveLeft(){
         if(this.velX < this.maxSpeed){
+            this.isMoving = true
             this.inst.x -= this.velX
             this.velX++
         }   
@@ -20,6 +23,7 @@ export default class Platformer{
 
     moveRight(){
         if(this.velX < this.maxSpeed){
+            this.isMoving = true
             this.velX++
             this.inst.x += this.velX
 
@@ -35,6 +39,7 @@ export default class Platformer{
 
     always(){
 
+
         this.velX *= this.friction
 
         this.inst.y += this.velY
@@ -45,20 +50,23 @@ export default class Platformer{
         for(let wall of potentials){
             
                 if(this.inst.collider.collides(wall, CollisionResult) && wall.solid){
-
-                    this.isJumping = false
+                    this.isMoving = false
 
                     if(CollisionResult.overlap_x < 0 || CollisionResult.overlap_x > 0){
                         this.velX = 0
-                        this.inst.x -= CollisionResult.overlap * CollisionResult.overlap_x;
 
                     }
         
                     if(CollisionResult.overlap_y < 0 || CollisionResult.overlap_y > 0){
+                        this.isJumping = false
+
                         this.velY = 0
-                        this.inst.y -= CollisionResult.overlap * CollisionResult.overlap_y;
                     }
+                    this.inst.x -= CollisionResult.overlap * CollisionResult.overlap_x;
+                    this.inst.y -= CollisionResult.overlap * CollisionResult.overlap_y;
+
                 }
         }
+        log(this.velY)
     }
 }
