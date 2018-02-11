@@ -31,16 +31,14 @@ export default class Platformer{
             this.isJumping  = true
             this.velY = -this.jumpStrength;
         }
-
-
     }
 
     always(){
 
         this.velX *= this.friction
 
-        this.velY += this.gravity;
         this.inst.y += this.velY
+        this.velY += this.gravity;
 
         let potentials  = this.inst.collider.potentials()
     
@@ -49,12 +47,17 @@ export default class Platformer{
                 if(this.inst.collider.collides(wall, CollisionResult) && wall.solid){
 
                     this.isJumping = false
-                    this.velY = 0
 
-                    this.inst.x -= CollisionResult.overlap * CollisionResult.overlap_x;
-                    this.inst.y -= CollisionResult.overlap * CollisionResult.overlap_y;
-                    
-      
+                    if(CollisionResult.overlap_x < 0 || CollisionResult.overlap_x > 0){
+                        this.velX = 0
+                        this.inst.x -= CollisionResult.overlap * CollisionResult.overlap_x;
+
+                    }
+        
+                    if(CollisionResult.overlap_y < 0 || CollisionResult.overlap_y > 0){
+                        this.velY = 0
+                        this.inst.y -= CollisionResult.overlap * CollisionResult.overlap_y;
+                    }
                 }
         }
     }

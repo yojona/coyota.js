@@ -33,7 +33,7 @@ AssetManager.load(resources).then(()=>{
 
     OnStart(()=>{
         ground      = new TiledBackground(AssetManager.Textures.groundTexture, 0, 216, 320, 32)
-        ground2     = new TiledBackground(AssetManager.Textures.groundTexture, 200, 180, 120, 32)
+        ground2     = new TiledBackground(AssetManager.Textures.groundTexture, 208, 184, 120, 32)
         player      = new Sprite(AssetManager.Textures.playerTexture, 10, 120, 24, 32, 12, 20)
         player.addAnimation({
             "Walk": new Animation(player.texture, 1, 3, 10)
@@ -41,7 +41,6 @@ AssetManager.load(resources).then(()=>{
 
 
         player.addBehavior(new Platformer())
-        player.setSize(player.width * 2, player.height * 2)
 
         ground.addBehavior(new Solid())
         ground2.addBehavior(new Solid())
@@ -52,17 +51,19 @@ AssetManager.load(resources).then(()=>{
 
         if(keyboard.keys[37]){
             player.behaviors.Platformer.moveLeft()
+            player.setMirrored(true)
         }   
 
         if(keyboard.keys[39]){
             player.behaviors.Platformer.moveRight()
+            player.setMirrored(false)
         }          
         
         if(keyboard.keys[38]){
             player.behaviors.Platformer.jump()
         }
 
-player.drawCollision()
+        player.setAnimation("Walk").play()
         player.draw()
         ground.draw()
         ground2.draw()
