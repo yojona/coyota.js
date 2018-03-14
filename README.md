@@ -10,12 +10,12 @@ Coyota.js provide two main functions, **OnStart** and **Always**.
 **OnStart** function will be executed the first time the game is run, **Always** is the game loop. 
 
 ```javascript
-    OnStart(()=>{
-        screen.create(320, 240)    
+    OnStart(() => {
+      screen.create(320, 240)    
     })
 
-    Always(()=>{
-        // Write your game here
+    Always(() => {
+      // Write your game here
     })
 ```
 
@@ -25,11 +25,11 @@ It is highly recommended to preload your assets before using them. You can use t
 Use the **Setup** function to set up your game while your assets are loading. **AssetManager** is a global object.
 ``` javascript
 let resources = {
-    playerTexture: './assets/mauricio.png',
+  playerTexture: './assets/mauricio.png',
 }
 
-Setup(()=>{
-    screen.create(320, 240)    
+Setup(() => {
+  screen.create(320, 240)    
 })
 
 AssetManager.load(resources).then(() => {
