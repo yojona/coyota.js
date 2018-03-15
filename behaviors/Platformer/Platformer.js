@@ -4,18 +4,19 @@ export default class Platformer {
     this.speed = 0
     this.maxSpeed = 100
     this.acceleration = 1000
-    this.deceleration = 500
+    this.deceleration = 1000
 
     this.direction = null
 
     this.isMoving = false
-    this.isOnFloor = false
+    this.onFloor = false
     this.isJumping = false
     this.isFalling = false
 
     this.vectorY = 0
-    this.jumpPower = 320
     this.fallSpeed = 0
+
+    this.jumpPower = 320
     this.gravity = 1000
     this.maxFallSpeed = 1000
   }
@@ -31,6 +32,8 @@ export default class Platformer {
   }
 
   jump () {
+    this.onFloor = false
+
     if (!this.isJumping) {
       this.vectorY -= this.jumpPower
       this.isJumping = true
@@ -81,7 +84,7 @@ export default class Platformer {
         if (CollisionResult.overlap_y > 0) {
           this.vectorY = 0
           this.isJumping = false
-          this.isOnFloor = true
+          this.onFloor = true
           this.vectorY = 0
         }
 
@@ -89,5 +92,11 @@ export default class Platformer {
         this.inst.y -= CollisionResult.overlap * CollisionResult.overlap_y
       }
     }
+
+    log(this.onFloor)
+  }
+
+  isOnFloor () {
+    return this.onFloor
   }
 }
