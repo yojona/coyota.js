@@ -9,7 +9,7 @@
 
 import Sprite from './../../objects/Sprite/Sprite.js'
 import Animation from '../../objects/Sprite/Animation.js'
-import Sound from './../../plugins/Audio/Audio.js'
+import Audio from './../../plugins/Audio/Audio.js'
 
 let resources = {
   playerTexture: './assets/mauricio.png'
@@ -20,7 +20,6 @@ let musica
 Setup(() => {
   screen.create(320, 240)
   screen.setSmoothSampling(false)
-  musica = new Sound('./assets/naranja.mp3')
 })
 
 AssetManager.load(resources).then(() => {
@@ -34,11 +33,6 @@ AssetManager.load(resources).then(() => {
     })
     
     player.setAnimation('Walk').play()
-
-    musica.setVolume(10)
-    musica.getVolume()
-    musica.setLoop(true)
-    musica.play()
   })
 
   Always(() => {

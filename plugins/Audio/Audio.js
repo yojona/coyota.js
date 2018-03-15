@@ -1,10 +1,33 @@
-export default class Sound {
-  constructor (a) {
-    this.music = new Audio(a)
-    this.volume = 100
+export default class Audio {
+  constructor (src, loop) {
+    this.audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+    this.source = this.audioCtx.createBufferSource()
+    this.request = new window.XMLHttpRequest()
+  
+    this.request.open('GET', src, true)
+  
+    this.request.responseType = 'arraybuffer'
+  
+    this.request.onload = () => {
+      var audioData = this.request.response
+  
+      this.audioCtx.decodeAudioData(audioData, (buffer) => {
+        let myBuffer = buffer
+        this.source.buffer = myBuffer
+        this.source.connect(this.audioCtx.destination)
+        this.source.loop = loop
+      },
+  
+      function (e) {
+        console.log('Error with decoding audio data' + e.err)
+      })
+    }
+
+    this.request.send()
   }
   play () {
-    this.music.play()
+    this.source.start(0)
   }
 
   getVolume () {
@@ -14,31 +37,5 @@ export default class Sound {
   setVolume (vol) {
     this.volume = vol
     this.music.volume = Clamp((vol / 100), 0, 1)
-  }
-
-  setLoop (bool) {
-    let audioCtx = new (window.AudioContext || window.webkitAudioContext)()
-    let source
-    let songLength
-    let request
-
-    source = audioCtx.createBufferSource()
-    request = new XMLHttpRequest()
-    request.open('GET', './assets/naranja.mp3', true)
-    request.responseType = 'arraybuffer'
-
-    request.onload = () => {
-      let audioData = request.response
-
-      audioCtx.decodeAudioData(audioData, (buffer) => {
-        let myBuffer = buffer
-        songLength = buffer.duration
-        source.buffer = myBuffer
-        source.connect(audioCtx.destination)
-        source.loop = bool
-      }
-      )
-    }
-    request.send()
   }
 }
