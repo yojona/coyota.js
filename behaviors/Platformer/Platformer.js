@@ -18,7 +18,7 @@ export default class Platformer {
 
     this.jumpPower = 320
     this.gravity = 1000
-    this.maxFallSpeed = 1000
+    this.maxFallSpeed = 500
   }
 
   moveLeft () {
