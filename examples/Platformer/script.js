@@ -13,6 +13,7 @@ import Animation from '../../objects/Sprite/Animation.js'
 import Solid from './../../behaviors/Solid/Solid.js'
 import Keyboard from '../../plugins/Keyboard/Keyboard.js'
 import Platformer from '../../behaviors/Platformer/Platformer.js'
+import Wrap from '../../behaviors/Wrap/Wrap.js';
 
 let resources = {
   playerTexture: './assets/mauricio.png',
@@ -34,7 +35,7 @@ AssetManager.load(resources).then(() => {
 
   OnStart(() => {
     player = new Sprite(AssetManager.Textures.playerTexture, 16, 120, 24, 32, 12, 20)
-    ground = new TiledBackground(AssetManager.Textures.groundTexture, 0, 216, 320, 32)
+    ground = new TiledBackground(AssetManager.Textures.groundTexture, 0, 216, 112, 32)
     ground2 = new TiledBackground(AssetManager.Textures.groundTexture, 208, 184, 120, 32)
     ground3 = new TiledBackground(AssetManager.Textures.groundTexture, 128, 136, 80, 16)
 
@@ -43,10 +44,13 @@ AssetManager.load(resources).then(() => {
     })
 
     player.addBehavior(new Platformer())
+    player.addBehavior(new Wrap())
 
     ground.addBehavior(new Solid())
     ground2.addBehavior(new Solid())
     ground3.addBehavior(new Solid())
+
+    player.behaviors.Wrap.setVerticalWrap(true)
   })
 
   Always(() => {
