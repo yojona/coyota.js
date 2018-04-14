@@ -37,7 +37,7 @@ AssetManager.load(resources).then(() => {
 
   OnStart(() => {
     player = new Sprite(AssetManager.Textures.playerTexture, 16, 120, 24, 32, 12, 20)
-    ground = new TiledBackground(AssetManager.Textures.groundTexture, 0, 216, 320, 32)
+    ground = new TiledBackground(AssetManager.Textures.groundTexture, 0, 216, 112, 32)
     ground2 = new TiledBackground(AssetManager.Textures.groundTexture, 208, 184, 120, 32)
     ground3 = new TiledBackground(AssetManager.Textures.groundTexture, 128, 136, 80, 16)
 
@@ -48,11 +48,14 @@ AssetManager.load(resources).then(() => {
     })
 
     player.addBehavior(new Platformer())
+    player.addBehavior(new Wrap())
 
     bullet.addBehavior(new Bullet(100, 0, true))
     ground.addBehavior(new Solid())
     ground2.addBehavior(new Solid())
     ground3.addBehavior(new Solid())
+
+    player.behaviors.Wrap.setVerticalWrap(true)
   })
 
   Always(() => {
