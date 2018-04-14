@@ -17,21 +17,21 @@ export default class Wrap {
 
     always () {
 
-        // Horizontal Wrap
-        if (this.horizontalWrap) {
-            if (this.inst.x > ViewportRight()) {
-                this.inst.x = ViewportLeft()
-            } else if (this.inst.x < ViewportLeft()) {
-                this.inst.x = ViewportRight()
-            }
-        }
-
         // Vertical Wrap
         if (this.verticalWrap) {
             if (this.inst.y > ViewportBottom()) {
                 this.inst.y = ViewportTop()
             } else if (this.inst.y < ViewportTop()) {
                 this.inst.y = ViewportBottom()
+            }
+        }
+
+        // Horizontal Wrap
+        if (this.horizontalWrap) {
+            if (this.inst.x > ViewportRight()) {
+                this.inst.x = ViewportLeft()
+            } else if (this.inst.x < ViewportLeft()) {
+                this.inst.x = ViewportRight()
             }
         }
     }
