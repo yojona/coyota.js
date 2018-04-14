@@ -9,10 +9,13 @@
 
 import Sprite from './../../objects/Sprite/Sprite.js'
 import Animation from '../../objects/Sprite/Animation.js'
+import Audio from './../../plugins/Audio/Audio.js'
 
 let resources = {
   playerTexture: './assets/mauricio.png'
 }
+
+let musica
 
 Setup(() => {
   screen.create(320, 240)
@@ -28,7 +31,7 @@ AssetManager.load(resources).then(() => {
     player.addAnimation({
       'Walk': new Animation(player.texture, 1, 3, 10)
     })
-
+    
     player.setAnimation('Walk').play()
   })
 
