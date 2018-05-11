@@ -55,6 +55,7 @@ OnStart(() => {
   player.addAnimation({
     "Walk": new Animation(player.texture, 1, 3, 10) //source, initialFrame, lastFrame, speed)
   })
+}
 
 Always(() => {
   player.setAnimation("Walk").play()
