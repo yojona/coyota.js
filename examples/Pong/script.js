@@ -10,6 +10,7 @@
 import Sprite from '../../objects/Sprite/Sprite.js'
 import Bullet from '../../behaviors/Bullet/Bullet.js'
 import Solid from '../../behaviors/Solid/Solid.js'
+import Spinner from '../../behaviors/Spinner/Spinner.js'
 
 let ball
 let player
@@ -25,6 +26,7 @@ OnStart(() => {
   ball.addBehavior(new Bullet(200, 0, true))
   cpu.addBehavior(new Solid())
   player.addBehavior(new Solid())
+  player.addBehavior(new Spinner(200))
 })
 
 Always(() => {

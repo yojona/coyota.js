@@ -54,8 +54,7 @@ AssetManager.load(resources).then(() => {
       player.behaviors.Platformer.moveLeft()
       player.setMirrored(true)
       player.setAnimation('Walk').play()
-    }
-    else if (keyboard.keys[39]) {
+    } else if (keyboard.keys[39]) {
       player.behaviors.Platformer.moveRight()
       player.setMirrored(false)
       player.setAnimation('Walk').play()
