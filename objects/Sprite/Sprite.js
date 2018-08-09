@@ -113,12 +113,12 @@ export default class Sprite extends CoyotaObject {
 
   setMirrored (bool) {
     this._mirrored = bool
-    this._scaleX = bool ? -1: 1
+    this._scaleX = bool ? -1 : 1
   }
 
   setFlipped (bool) {
     this._flipped = bool
-    this._scaleY = bool ? -1: 1
+    this._scaleY = bool ? -1 : 1
   }
 
   draw () {
@@ -166,7 +166,7 @@ export default class Sprite extends CoyotaObject {
   }
 
   compareFrame (frame) {
-    return this.getCurrentAnimation().currentFrame == frame
+    return this.getCurrentAnimation().currentFrame === frame
   }
 
   drawOrigin () {

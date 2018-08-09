@@ -61,11 +61,10 @@ export default class Platformer {
     // Reset direction
     this.direction = ''
 
-
     // Gravity
     this.vectorY = this.vectorY < this.maxFallSpeed ? this.vectorY += this.gravity * dt : this.maxFallSpeed
     this.inst.y += this.vectorY * dt
-    
+
     // Ground Collision
     let potentials = this.inst.collider.potentials()
 
@@ -92,8 +91,6 @@ export default class Platformer {
         this.inst.y -= CollisionResult.overlap * CollisionResult.overlap_y
       }
     }
-
-    log(this.onFloor)
   }
 
   isOnFloor () {
