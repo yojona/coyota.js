@@ -6,14 +6,15 @@
  * Created: 01/19/2018
  * Last updated: 02/09/2018
  */
-
-import TiledBackground from './../../objects/TiledBackground/TiledBackground.js'
-import Sprite from './../../objects/Sprite/Sprite.js'
-import Animation from '../../objects/Sprite/Animation.js'
-import Solid from './../../behaviors/Solid/Solid.js'
-import Keyboard from '../../plugins/Keyboard/Keyboard.js'
-import Platformer from '../../behaviors/Platformer/Platformer.js'
-import Bullet from '../../behaviors/Bullet/Bullet.js'
+import './lib/main';
+import TiledBackground from './objects/TiledBackground/TiledBackground'
+import Sprite from './objects/Sprite/Sprite'
+import Animation from './objects/Sprite/Animation'
+import Solid from './behaviors/Solid/Solid'
+import Keyboard from './plugins/Keyboard/Keyboard'
+import Platformer from './behaviors/Platformer/Platformer'
+import Bullet from './behaviors/Bullet/Bullet'
+import Wrap from './behaviors/Wrap/Wrap'
 
 let resources = {
   playerTexture: './assets/mauricio.png',
@@ -41,33 +42,35 @@ AssetManager.load(resources).then(() => {
     ground2 = new TiledBackground(AssetManager.Textures.groundTexture, 208, 184, 120, 32)
     ground3 = new TiledBackground(AssetManager.Textures.groundTexture, 128, 136, 80, 16)
 
-    bullet = new Sprite(AssetManager.Textures.bulletTexture, 40, 170, 16, 16, 0, 0)
+    bullet = new Sprite(AssetManager.Textures.groundTexture, 40, 170, 16, 16, 0, 0)
 
     player.addAnimation({
-      'Walk': new Animation(player.texture, 1, 3, 10)
+      'Walk': new Animation(player.texture, 1, 3, 10),
+      'Jump': new Animation(player.texture, 1, 1, 10)
     })
 
-    player.addBehavior(new Platformer())
-    player.addBehavior(new Wrap())
+    player.addBehavior(new Platformer(), 'Platformer')
 
-    bullet.addBehavior(new Bullet(100, 0, true))
-    ground.addBehavior(new Solid())
-    ground2.addBehavior(new Solid())
-    ground3.addBehavior(new Solid())
-
+    bullet.addBehavior(new Bullet(100, 0, true), 'Bullet')
+    ground.addBehavior(new Solid(), 'Solid')
+    ground2.addBehavior(new Solid(), 'Solid')
+    ground3.addBehavior(new Solid(), 'Solid')
+    player.addBehavior(new Wrap(), 'Wrap')
     player.behaviors.Wrap.setVerticalWrap(true)
+
+
   })
 
   Always(() => {
 
-    if (player.behaviors.Platformer.isMoving()) {
+    if (player.behaviors.Platformer.isMoving) {
       if (player.behaviors.Platformer.isOnFloor()) {
         player.setAnimation("Walk").play()
       }
       else {
-        player.setAnimation("Walk").stop()
+        player.setAnimation("Jump").play()
       }
-    } else  {
+    } else {
       player.setAnimation("Default")
     }
 
@@ -83,17 +86,12 @@ AssetManager.load(resources).then(() => {
       player.behaviors.Platformer.jump()
     }
 
-    if (player.behaviors.Platformer.vectorX > 0) {
+    if (player.behaviors.Platformer.speed > 0) {
       player.setMirrored(false)
     }
 
-    if (player.behaviors.Platformer.vectorX < 0) {
+    if (player.behaviors.Platformer.speed < 0) {
       player.setMirrored(true)
-    }
-
-    if (keyboard.keys[65]) {
-      let n = Object.assign(bullet)
-      log(n)
     }
 
     player.draw()

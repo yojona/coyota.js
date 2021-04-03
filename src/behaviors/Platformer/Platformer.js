@@ -37,6 +37,7 @@ export default class Platformer {
     if (!this.isJumping) {
       this.vectorY -= this.jumpPower
       this.isJumping = true
+      this.isMoving = true
     }
   }
 
@@ -55,6 +56,10 @@ export default class Platformer {
       }
     }
 
+    if (this.speed === 0 && this.vectorY === 0) {
+      this.isMoving = false
+    }
+
     // Move horizontally
     this.inst.x = this.inst.x + this.speed * dt
 
@@ -65,13 +70,12 @@ export default class Platformer {
     // Gravity
     this.vectorY = this.vectorY < this.maxFallSpeed ? this.vectorY += this.gravity * dt : this.maxFallSpeed
     this.inst.y += this.vectorY * dt
-    
+
     // Ground Collision
     let potentials = this.inst.collider.potentials()
 
     for (let wall of potentials) {
       if (this.inst.collider.collides(wall, CollisionResult) && wall.solid) {
-        this.isMoving = false
 
         if (CollisionResult.overlap_x < 0 || CollisionResult.overlap_x > 0) {
           this.speed = 0
@@ -92,8 +96,6 @@ export default class Platformer {
         this.inst.y -= CollisionResult.overlap * CollisionResult.overlap_y
       }
     }
-
-    log(this.onFloor)
   }
 
   isOnFloor () {

@@ -1,0 +1,30 @@
+{
+  "name": "coyota.js",
+  "version": "1.0.0",
+  "description": "A very very simple game engine written in Javascript.",
+  "scripts": {
+    "build": "webpack",
+    "start": "webpack serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yojona/coyota.js.git"
+  },
+  "author": "Jonathan Ayala",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/yojona/coyota.js/issues"
+  },
+  "homepage": "https://github.com/yojona/coyota.js#readme",
+  "devDependencies": {
+    "clean-webpack-plugin": "^3.0.0",
+    "copy-webpack-plugin": "^8.1.0",
+    "html-inline-script-webpack-plugin": "^2.0.0",
+    "html-webpack-inline-source-plugin": "^0.0.10",
+    "html-webpack-plugin": "^5.3.1",
+    "webpack": "^5.28.0",
+    "webpack-cli": "^4.6.0",
+    "webpack-dev-server": "^3.11.2"
+  }
+}

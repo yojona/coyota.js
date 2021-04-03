@@ -17,6 +17,7 @@ export default class Sprite extends CoyotaObject {
     this._flipped = false
     this._scaleX = 1
     this._scaleY = 1
+    this._currentAnimation
 
     if (image instanceof HTMLImageElement) {
       this.texture = image

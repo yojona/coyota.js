@@ -9,10 +9,10 @@ export default class CoyotaObject {
     this.collisionEnabled = bool
   }
 
-  addBehavior (behavior) {
+  addBehavior (behavior, name) {
     behavior.inst = this
-    behavior.inst.collider.solid = behavior.constructor.name === 'Solid'
-    this.behaviors[behavior.constructor.name] = behavior
+    behavior.inst.collider.solid = name === 'Solid'
+    this.behaviors[name] = behavior
   }
 
   getBehavior (behaviorName) {

@@ -1,5 +1,4 @@
-# Directories
-editor/
+node_modules
+dist
 
-# Files
 .DS_Store
