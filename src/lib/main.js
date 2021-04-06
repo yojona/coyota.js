@@ -31,6 +31,18 @@ window.DrawCollision = exp.DrawCollision
 window.IsOverlapping = exp.IsOverlapping
 window.TakeCapture = exp.TakeCapture
 window.Share = exp.Share
+window.timescale = 1
+
+const delay = ms => new Promise(res => setTimeout(res, ms));
+
+document.addEventListener(`visibilitychange`, async () => {
+  if (document.hidden) {
+    pause = true
+  } else {
+    await delay(100)
+    pause = false
+  }
+});
 
 window.Setup = setup => {
   setup.call()
@@ -45,9 +57,8 @@ let before = Date.now()
 window.Always = (update) => {
   let now = Date.now()
 
-  dt = (now - before) / 1000
-  fps = Math.round(1000 / (now - before))
-
+  dt = ((now - before) / 1000) * timescale
+  fps = Math.round((1000 / (now - before)) / timescale)
   if (!pause) {
     screen.clear()
 

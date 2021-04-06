@@ -28,6 +28,9 @@ Setup(() => {
   screen.setBackgroundColor('cyan')
 })
 
+// InstanceManager.add("Player3", player)
+// InstanceManager.objects.Player3.getInstances()
+// InstanceManager.objects.Player3.createInstance("layer0", 20, 49)
 AssetManager.load(resources).then(() => {
   let ground
   let ground2
@@ -37,7 +40,7 @@ AssetManager.load(resources).then(() => {
   let keyboard = new Keyboard()
 
   OnStart(() => {
-    player = new Sprite(AssetManager.Textures.playerTexture, 16, 120, 24, 32, 12, 20)
+    player = new Sprite(AssetManager.Textures.playerTexture, 16, 202, 24, 32, 12, 20)
     ground = new TiledBackground(AssetManager.Textures.groundTexture, 0, 216, 112, 32)
     ground2 = new TiledBackground(AssetManager.Textures.groundTexture, 208, 184, 120, 32)
     ground3 = new TiledBackground(AssetManager.Textures.groundTexture, 128, 136, 80, 16)
@@ -62,7 +65,6 @@ AssetManager.load(resources).then(() => {
   })
 
   Always(() => {
-
     if (player.behaviors.Platformer.isMoving) {
       if (player.behaviors.Platformer.isOnFloor()) {
         player.setAnimation("Walk").play()
@@ -94,10 +96,10 @@ AssetManager.load(resources).then(() => {
       player.setMirrored(true)
     }
 
-    player.draw()
     ground.draw()
     ground2.draw()
     ground3.draw()
     bullet.draw()
+    player.draw()
   })
 })
