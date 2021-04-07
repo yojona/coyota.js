@@ -18,7 +18,7 @@ export default class Bullet {
     this.angle = angle
   }
 
-  always () {
+  always (runtime) {
     if (this.enabled) {
       if (this.bounceOffSolid) {
         let potentials = this.inst.collider.potentials()
@@ -43,8 +43,8 @@ export default class Bullet {
       //     this.inst.setAngle(this.angle)
       // }
 
-      this.inst.x += Math.cos(Radians(this.angle)) * (this.speedX * dt)
-      this.inst.y += Math.sin(Radians(this.angle)) * (this.speedY * dt)
+      this.inst.x += Math.cos(Radians(this.angle)) * (this.speedX * runtime.dt)
+      this.inst.y += Math.sin(Radians(this.angle)) * (this.speedY * runtime.dt)
     }
   }
 }

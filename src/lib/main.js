@@ -32,41 +32,52 @@ window.IsOverlapping = exp.IsOverlapping
 window.TakeCapture = exp.TakeCapture
 window.Share = exp.Share
 window.timescale = 1
+window.currentLayout = 'main'
+
+const runtime = {
+  dt: 0,
+  fps: 0,
+  timescale: 1,
+  pause: false
+};
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
-
-document.addEventListener(`visibilitychange`, async () => {
+const handleVisibilityChange = async () => {
   if (document.hidden) {
-    pause = true
+    runtime.pause = true
   } else {
     await delay(100)
-    pause = false
+    runtime.pause = false
   }
-});
+};
+
+document.onvisibilitychange = handleVisibilityChange;
 
 window.Setup = setup => {
-  setup.call()
-}
+  setup.call();
+};
 
 window.OnStart = onstart => {
-  onstart.call()
-}
+  onstart.call();
+};
 
-let before = Date.now()
+let before = Date.now();
 
 window.Always = (update) => {
-  let now = Date.now()
+  let now = Date.now();
 
-  dt = ((now - before) / 1000) * timescale
-  fps = Math.round((1000 / (now - before)) / timescale)
-  if (!pause) {
-    screen.clear()
+  runtime.dt = ((now - before) / 1000) * runtime.timescale;
+  runtime.fps = Math.round((1000 / (now - before)) / runtime.timescale);
 
-    update()
+  if (!runtime.pause) {
+    screen.clear();
+    CollisionManager.update();
 
-    CollisionManager.update()
+    update(runtime);
   }
 
-  before = now
-  requestAnimationFrame(() => Always(update))
-}
+  before = now;
+  requestAnimationFrame(() => Always(update));
+};
+
+export {runtime};

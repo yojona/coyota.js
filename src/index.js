@@ -59,12 +59,9 @@ AssetManager.load(resources).then(() => {
     ground2.addBehavior(new Solid(), 'Solid')
     ground3.addBehavior(new Solid(), 'Solid')
     player.addBehavior(new Wrap(), 'Wrap')
-    player.behaviors.Wrap.setVerticalWrap(true)
-
-
   })
 
-  Always(() => {
+  Always((runtime) => {
     if (player.behaviors.Platformer.isMoving) {
       if (player.behaviors.Platformer.isOnFloor()) {
         player.setAnimation("Walk").play()

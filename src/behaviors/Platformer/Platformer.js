@@ -41,16 +41,16 @@ export default class Platformer {
     }
   }
 
-  always () {
+  always (runtime) {
     if (this.direction === 'left' && this.speed > -this.maxSpeed) {
-      this.speed = this.speed - this.acceleration * dt
+      this.speed = this.speed - this.acceleration * runtime.dt
     } else if (this.direction === 'right' && this.speed < this.maxSpeed) {
-      this.speed = this.speed + this.acceleration * dt
+      this.speed = this.speed + this.acceleration * runtime.dt
     } else {
-      if (this.speed > this.deceleration * dt) {
-        this.speed = this.speed - this.deceleration * dt
-      } else if (this.speed < -this.deceleration * dt) {
-        this.speed = this.speed + this.deceleration * dt
+      if (this.speed > this.deceleration * runtime.dt) {
+        this.speed = this.speed - this.deceleration * runtime.dt
+      } else if (this.speed < -this.deceleration * runtime.dt) {
+        this.speed = this.speed + this.deceleration * runtime.dt
       } else {
         this.speed = 0
       }
@@ -61,15 +61,15 @@ export default class Platformer {
     }
 
     // Move horizontally
-    this.inst.x = this.inst.x + this.speed * dt
+    this.inst.x = this.inst.x + this.speed * runtime.dt
 
     // Reset direction
     this.direction = ''
 
 
     // Gravity
-    this.vectorY = this.vectorY < this.maxFallSpeed ? this.vectorY += this.gravity * dt : this.maxFallSpeed
-    this.inst.y += this.vectorY * dt
+    this.vectorY = this.vectorY < this.maxFallSpeed ? this.vectorY += this.gravity * runtime.dt : this.maxFallSpeed
+    this.inst.y += this.vectorY * runtime.dt
 
     // Ground Collision
     let potentials = this.inst.collider.potentials()

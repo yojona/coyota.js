@@ -1,3 +1,5 @@
+import { runtime } from '../../lib/main';
+
 export default class CoyotaObject {
   constructor () {
     this.behaviors = {}
@@ -22,7 +24,7 @@ export default class CoyotaObject {
   update () {
     for (let behavior in this.behaviors) {
       if (this.behaviors[behavior].always) {
-        this.behaviors[behavior].always()
+        this.behaviors[behavior].always(runtime)
       }
     }
   }

@@ -6,7 +6,7 @@ const CopyPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   entry: './src/index.js',
-  mode: 'development',
+  mode: 'production',
   watch: true,
   devServer: {
     open: true,

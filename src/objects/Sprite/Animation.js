@@ -1,3 +1,5 @@
+import { runtime } from "../../lib/main"
+
 export default class Animation {
   constructor (texture, from, to, speed) {
     this.texture = texture
@@ -16,7 +18,7 @@ export default class Animation {
         this.tick = this.tick + this.speed
       }
 
-      if (this.tick > fps) {
+      if (this.tick > runtime.fps) {
         if (this._isLoop) {
           if (this.currentFrame < this.frames) {
             this.currentFrame = this.currentFrame > this.frames ? this.firstFrame : ++this.currentFrame

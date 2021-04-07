@@ -8,7 +8,7 @@ export default class Spinner {
     this.speed = speed
   }
 
-  always () {
-    this.inst.setAngle(this.inst.angle + (this.speed) * dt)
+  always (runtime) {
+    this.inst.setAngle(this.inst.angle + (this.speed) * runtime.dt)
   }
 }

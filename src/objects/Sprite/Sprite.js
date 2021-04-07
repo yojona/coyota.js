@@ -18,6 +18,7 @@ export default class Sprite extends CoyotaObject {
     this._scaleX = 1
     this._scaleY = 1
     this._currentAnimation
+    this.appendDraw = () => {}
 
     if (image instanceof HTMLImageElement) {
       this.texture = image
@@ -124,11 +125,11 @@ export default class Sprite extends CoyotaObject {
 
   draw () {
     this._currentAnimation.draw(() => {
-      let drawX = (this._x - this.scaledOriginX * this._scaleX) * this._scaleX
-      let drawY = (this._y - this.scaledOriginY * this._scaleY) * this._scaleY
+      const drawX = (this._x - this.scaledOriginX * this._scaleX) * this._scaleX
+      const drawY = (this._y - this.scaledOriginY * this._scaleY) * this._scaleY
 
-      let translateX = this._x
-      let translateY = this._y
+      const translateX = this._x
+      const translateY = this._y
 
       screen.context.save()
       screen.context.globalAlpha = this.opacity
@@ -136,8 +137,9 @@ export default class Sprite extends CoyotaObject {
       screen.context.rotate(Radians(this.angle))
       screen.context.translate(-translateX, -translateY)
       screen.context.scale(this._scaleX, this._scaleY)
-      // screen.context.drawImage(this._currentAnimation.texture, this._currentAnimation.currentFrame * this.width, 0, this.width, this.height, drawX, drawY, this.width, this.height)
       screen.context.drawImage(this._currentAnimation.texture, this._currentAnimation.currentFrame * this.frameWidth, 0, this.frameWidth, this.frameHeight, drawX, drawY, this.width, this.height)
+      this.appendDraw()
+
       screen.context.restore()
       this.update()
     })
